@@ -143,7 +143,7 @@ function mapFromJson<T>(decoratorMetadata: IDecoratorMetaData<any>, instance: T,
         return deserialize(clazz, innerJson);
     }
 
-    return typeof json === 'undefined' ? undefined : json[decoratorName];
+    return typeof json[decoratorName] === 'undefined' ? (json[decoratorName] === null ? null : undefined) : json[decoratorName];
 }
 
 /**

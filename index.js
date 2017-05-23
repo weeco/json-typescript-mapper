@@ -103,7 +103,7 @@ function mapFromJson(decoratorMetadata, instance, json, key) {
     if (!utils_1.isPrimitiveOrPrimitiveClass(clazz)) {
         return deserialize(clazz, innerJson);
     }
-    return typeof json === 'undefined' ? undefined : json[decoratorName];
+    return typeof json[decoratorName] === 'undefined' ? (json[decoratorName] === null ? null : undefined) : json[decoratorName];
 }
 /**
  * deserialize
