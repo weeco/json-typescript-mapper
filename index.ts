@@ -142,8 +142,8 @@ function mapFromJson<T>(decoratorMetadata: IDecoratorMetaData<any>, instance: T,
     if (!isPrimitiveOrPrimitiveClass(clazz)) {
         return deserialize(clazz, innerJson);
     }
-
-    return typeof json[decoratorName] === 'undefined' ? (json[decoratorName] === null ? null : undefined) : json[decoratorName];
+	
+	return typeof json[decoratorName] === 'undefined' ? undefined : json[decoratorName];
 }
 
 /**
@@ -156,6 +156,10 @@ function mapFromJson<T>(decoratorMetadata: IDecoratorMetaData<any>, instance: T,
  * @return {T} return mapped object
  */
 export function deserialize<T extends IGenericObject>(Clazz: {new(): T}, json: IGenericObject): T {
+	if (json === null) {
+		return null;
+	}
+	
     /**
      * As it is a recursive function, ignore any arguments that are unset
      */
