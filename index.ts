@@ -233,6 +233,10 @@ function serializeProperty(metadata: IDecoratorMetaData<any>, prop: any): any {
     }
 
     if (!metadata.clazz) {
+		if (prop instanceof Date) {
+			prop = prop.toISOString();
+		}
+		
         return prop;
     }
 

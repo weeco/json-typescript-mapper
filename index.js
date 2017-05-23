@@ -1,6 +1,7 @@
 "use strict";
-require('reflect-metadata');
-var utils_1 = require('./libs/utils');
+Object.defineProperty(exports, "__esModule", { value: true });
+require("reflect-metadata");
+var utils_1 = require("./libs/utils");
 /**
  * Decorator variable name
  *
@@ -76,7 +77,7 @@ function getJsonProperty(target, propertyKey) {
 function hasAnyNullOrUndefined() {
     var args = [];
     for (var _i = 0; _i < arguments.length; _i++) {
-        args[_i - 0] = arguments[_i];
+        args[_i] = arguments[_i];
     }
     return args.some(function (arg) { return arg === null || arg === undefined; });
 }
@@ -182,6 +183,9 @@ function serializeProperty(metadata, prop) {
         return metadata.customConverter.toJson(prop);
     }
     if (!metadata.clazz) {
+        if (prop instanceof Date) {
+            prop = prop.toISOString();
+        }
         return prop;
     }
     if (utils_1.isArrayOrArrayClass(prop)) {
