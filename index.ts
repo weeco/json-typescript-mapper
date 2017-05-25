@@ -199,6 +199,25 @@ export function deserialize<T extends IGenericObject>(Clazz: {new(): T}, json: I
 }
 
 /**
+ * deserialize array
+ *
+ * @function
+ * @param {{new():T}} clazz, class type which is going to initialize and hold a mapping json
+ * @param {Object[]} json, input json array which to be mapped
+ *
+ * @return {T[]} return array of mapped object
+ */
+export function deserializeArray<T extends IGenericObject>(Clazz: {new(): T}, json: IGenericObject[]): T[] {
+	let results: T[] = [];
+	
+	for (let o of json) {
+		results.push(deserialize(Clazz, o));
+	}
+	
+	return results;
+}
+
+/**
  * Serialize: Creates a ready-for-json-serialization object from the provided model instance.
  * Only @JsonProperty decorated properties in the model instance are processed.
  *

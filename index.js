@@ -153,6 +153,24 @@ function deserialize(Clazz, json) {
 }
 exports.deserialize = deserialize;
 /**
+ * deserialize array
+ *
+ * @function
+ * @param {{new():T}} clazz, class type which is going to initialize and hold a mapping json
+ * @param {Object[]} json, input json array which to be mapped
+ *
+ * @return {T[]} return array of mapped object
+ */
+function deserializeArray(Clazz, json) {
+    var results = [];
+    for (var _i = 0, json_1 = json; _i < json_1.length; _i++) {
+        var o = json_1[_i];
+        results.push(deserialize(Clazz, o));
+    }
+    return results;
+}
+exports.deserializeArray = deserializeArray;
+/**
  * Serialize: Creates a ready-for-json-serialization object from the provided model instance.
  * Only @JsonProperty decorated properties in the model instance are processed.
  *
