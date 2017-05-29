@@ -197,6 +197,12 @@ exports.serialize = serialize;
  * @returns {any}
  */
 function serializeProperty(metadata, prop) {
+    if (typeof prop === 'undefined') {
+        return undefined;
+    }
+    if (prop === null) {
+        return null;
+    }
     if (!metadata || metadata.excludeToJson === true) {
         return;
     }

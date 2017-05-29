@@ -246,6 +246,13 @@ export function serialize(instance: any): any {
  * @returns {any}
  */
 function serializeProperty(metadata: IDecoratorMetaData<any>, prop: any): any {
+    if (typeof prop === 'undefined') {
+        return undefined;
+    }
+    
+    if (prop === null) {
+        return null;
+    }
 
     if (!metadata || metadata.excludeToJson === true) {
         return;
