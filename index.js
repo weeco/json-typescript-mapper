@@ -124,6 +124,10 @@ function deserialize(Clazz, json) {
     if (hasAnyNullOrUndefined(Clazz, json)) {
         return void 0;
     }
+    // convert date
+    if (Clazz === Date) {
+        return new Date(json);
+    }
     /**
      * Prevent non-json continue
      */
