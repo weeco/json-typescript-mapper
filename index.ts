@@ -169,7 +169,7 @@ export function deserialize<T extends IGenericObject>(Clazz: {new(): T}, json: I
 	
 	// convert date
 	if ((Clazz as any) === (Date as any)) {
-		return new Date(json) as any;
+		return new Date(json as any) as any;
 	}
 
     /**
