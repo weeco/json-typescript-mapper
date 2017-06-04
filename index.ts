@@ -269,7 +269,9 @@ function serializeProperty(metadata: IDecoratorMetaData<any>, prop: any): any {
 
     if (!metadata.clazz) {
 		if (prop instanceof Date) {
-			prop = prop.toISOString();
+			let tzoffset = prop.getTimezoneOffset() * 60000; //offset in milliseconds
+			let localISOTime = (new Date(prop.getTime() - tzoffset)).toISOString().slice(0,-1);
+			prop = localISOTime;
 		}
 		
         return prop;
