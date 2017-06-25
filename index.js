@@ -203,6 +203,22 @@ function serialize(instance) {
 }
 exports.serialize = serialize;
 /**
+ * Serialize array: Creates an array of ready-for-json-serialization object from the provided model instances.
+ * Only @JsonProperty decorated properties in the model instance are processed.
+ *
+ * @param instances an array of instance of a model classes
+ * @returns {any[]} an array of object ready to be serialized to JSON
+ */
+function serializeArray(instances) {
+    var results = [];
+    for (var _i = 0, instances_1 = instances; _i < instances_1.length; _i++) {
+        var instance = instances_1[_i];
+        results.push(serialize(instance));
+    }
+    return results;
+}
+exports.serializeArray = serializeArray;
+/**
  * Prepare a single property to be serialized to JSON.
  *
  * @param metadata
