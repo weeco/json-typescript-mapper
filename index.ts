@@ -178,17 +178,20 @@ export function deserialize<T extends IGenericObject>(Clazz: {new(): T}, json: I
     if (hasAnyNullOrUndefined(Clazz, json)) {
         return void 0;
     }
-	
-	// convert date
-	if ((Clazz as any) === (Date as any)) {
-		return new Date(json as any) as any;
-	}
 
     /**
      * Prevent non-json continue
      */
     if (!isTargetType(json, 'object')) {
-        return void 0;
+		// convert date
+		let date = new Date(json as any);
+		
+		if (isNaN(date.getTime())) {
+			return void 0;
+		}
+		else {
+			return date as any;
+		}        
     }
     /**
      * init root class to contain json

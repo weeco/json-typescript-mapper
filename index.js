@@ -133,15 +133,18 @@ function deserialize(Clazz, json) {
     if (hasAnyNullOrUndefined(Clazz, json)) {
         return void 0;
     }
-    // convert date
-    if (Clazz === Date) {
-        return new Date(json);
-    }
     /**
      * Prevent non-json continue
      */
     if (!utils_1.isTargetType(json, 'object')) {
-        return void 0;
+        // convert date
+        var date = new Date(json);
+        if (isNaN(date.getTime())) {
+            return void 0;
+        }
+        else {
+            return date;
+        }
     }
     /**
      * init root class to contain json
