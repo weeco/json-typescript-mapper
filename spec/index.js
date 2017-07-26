@@ -17,16 +17,16 @@ var Student = (function () {
         this.dateOfBirth = undefined;
         this.fullName = void 0;
     }
+    __decorate([
+        index_1.JsonProperty('name'),
+        __metadata("design:type", String)
+    ], Student.prototype, "fullName", void 0);
+    __decorate([
+        index_1.JsonProperty({ name: 'dob', customConverter: dateconverter_1.default }),
+        __metadata("design:type", Date)
+    ], Student.prototype, "dateOfBirth", void 0);
     return Student;
 }());
-__decorate([
-    index_1.JsonProperty('name'),
-    __metadata("design:type", String)
-], Student.prototype, "fullName", void 0);
-__decorate([
-    index_1.JsonProperty({ name: 'dob', customConverter: dateconverter_1.default }),
-    __metadata("design:type", Date)
-], Student.prototype, "dateOfBirth", void 0);
 var Address = (function () {
     function Address() {
         this.firstLine = void 0;
@@ -34,20 +34,20 @@ var Address = (function () {
         this.city = void 0;
         this.student = void 0;
     }
+    __decorate([
+        index_1.JsonProperty('first-line'),
+        __metadata("design:type", String)
+    ], Address.prototype, "firstLine", void 0);
+    __decorate([
+        index_1.JsonProperty('second-line'),
+        __metadata("design:type", String)
+    ], Address.prototype, "secondLine", void 0);
+    __decorate([
+        index_1.JsonProperty({ clazz: Student }),
+        __metadata("design:type", Student)
+    ], Address.prototype, "student", void 0);
     return Address;
 }());
-__decorate([
-    index_1.JsonProperty('first-line'),
-    __metadata("design:type", String)
-], Address.prototype, "firstLine", void 0);
-__decorate([
-    index_1.JsonProperty('second-line'),
-    __metadata("design:type", String)
-], Address.prototype, "secondLine", void 0);
-__decorate([
-    index_1.JsonProperty({ clazz: Student }),
-    __metadata("design:type", Student)
-], Address.prototype, "student", void 0);
 var Person = (function () {
     function Person() {
         this.name = void 0;
@@ -56,24 +56,24 @@ var Person = (function () {
         this.addressArr = void 0;
         this.address = void 0;
     }
+    __decorate([
+        index_1.JsonProperty('Name'),
+        __metadata("design:type", String)
+    ], Person.prototype, "name", void 0);
+    __decorate([
+        index_1.JsonProperty('xing'),
+        __metadata("design:type", String)
+    ], Person.prototype, "surname", void 0);
+    __decorate([
+        index_1.JsonProperty({ clazz: Address, name: 'AddressArr' }),
+        __metadata("design:type", Array)
+    ], Person.prototype, "addressArr", void 0);
+    __decorate([
+        index_1.JsonProperty({ clazz: Address, name: 'Address' }),
+        __metadata("design:type", Address)
+    ], Person.prototype, "address", void 0);
     return Person;
 }());
-__decorate([
-    index_1.JsonProperty('Name'),
-    __metadata("design:type", String)
-], Person.prototype, "name", void 0);
-__decorate([
-    index_1.JsonProperty('xing'),
-    __metadata("design:type", String)
-], Person.prototype, "surname", void 0);
-__decorate([
-    index_1.JsonProperty({ clazz: Address, name: 'AddressArr' }),
-    __metadata("design:type", Array)
-], Person.prototype, "addressArr", void 0);
-__decorate([
-    index_1.JsonProperty({ clazz: Address, name: 'Address' }),
-    __metadata("design:type", Address)
-], Person.prototype, "address", void 0);
 describe('index()', function () {
     it('simple json object #1', function () {
         var json = {

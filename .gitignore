@@ -8,5 +8,4 @@ node_modules
 .log
 
 #source map
-*.map
 documentation/
