@@ -1,4 +1,4 @@
-export function isTargetType(val:any, type:"object" | "string"):boolean {
+export function isTargetType(val:any, type: object | string):boolean {
     return typeof val === type;
 }
 
