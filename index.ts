@@ -263,7 +263,7 @@ export function serialize(instance: any): any {
             targetKey = metadata.name;
           }
         }
-        obj[metadata && metadata.name ? metadata.name : key] = serializeProperty(metadata, instance[key]);
+        obj[targetKey] = serializeProperty(metadata, instance[key]);
     });
     return obj;
 }
