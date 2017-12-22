@@ -200,6 +200,15 @@ function serialize(instance) {
     var obj = {};
     Object.keys(instance).forEach(function (key) {
         var metadata = getJsonProperty(instance, key);
+        var targetKey = key;
+        if (metadata) {
+            if (metadata.jsonTargetKey) {
+                targetKey = metadata.jsonTargetKey;
+            }
+            else if (metadata.name) {
+                targetKey = metadata.name;
+            }
+        }
         obj[metadata && metadata.name ? metadata.name : key] = serializeProperty(metadata, instance[key]);
     });
     return obj;

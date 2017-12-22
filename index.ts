@@ -35,12 +35,14 @@ export interface ICustomConverter {
  * @interface
  * @property {ICustomConverter} customConverter, will be used for mapping the property, if specified
  * @property {boolean} excludeToJson, will exclude the property for serialization, if true
+ * @property {string} jsonTargetKey, instead of reversing the instance to it's original json you can assign a property key when serialized
  */
 export interface IDecoratorMetaData<T> {
     name?: string,
     clazz?: {new(): T},
     customConverter?: ICustomConverter,
-    excludeToJson?: boolean
+    excludeToJson?: boolean,
+    jsonTargetKey?: string
 }
 
 /**
@@ -253,6 +255,14 @@ export function serialize(instance: any): any {
     const obj: any = {};
     Object.keys(instance).forEach(key => {
         const metadata = getJsonProperty(instance, key);
+        let targetKey: string = key;
+        if (metadata) {
+          if (metadata.jsonTargetKey) {
+            targetKey = metadata.jsonTargetKey;
+          } else if (metadata.name) {
+            targetKey = metadata.name;
+          }
+        }
         obj[metadata && metadata.name ? metadata.name : key] = serializeProperty(metadata, instance[key]);
     });
     return obj;
