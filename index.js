@@ -247,9 +247,6 @@ function serializeProperty(metadata, prop) {
     if (prop === null) {
         return null;
     }
-    if (!metadata || metadata.excludeToJson === true) {
-        return;
-    }
     if (metadata.customConverter) {
         return metadata.customConverter.toJson(prop);
     }
