@@ -202,7 +202,10 @@ function serialize(instance) {
         var metadata = getJsonProperty(instance, key);
         var targetKey = key;
         if (metadata) {
-            if (metadata.jsonTargetKey) {
+            if (metadata.excludeToJson) {
+                return;
+            }
+            else if (metadata.jsonTargetKey) {
                 targetKey = metadata.jsonTargetKey;
             }
             else if (metadata.name) {

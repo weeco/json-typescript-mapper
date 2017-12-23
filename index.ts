@@ -254,10 +254,13 @@ export function serialize(instance: any): any {
 
     const obj: any = {};
     Object.keys(instance).forEach(key => {
-        const metadata = getJsonProperty(instance, key);
+        const metadata: IDecoratorMetaData<{}> = getJsonProperty(instance, key);
+
         let targetKey: string = key;
         if (metadata) {
-          if (metadata.jsonTargetKey) {
+          if (metadata.excludeToJson) {
+            return;
+          } else if (metadata.jsonTargetKey) {
             targetKey = metadata.jsonTargetKey;
           } else if (metadata.name) {
             targetKey = metadata.name;
