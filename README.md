@@ -1,5 +1,8 @@
 # json-typescript-mapper
 
+## Fork description
+Primarily I use this the json-typescript-mapper for consuming a REST Api. Beside the additions of the upstream forks from brian and lucio, I've added a new json property setting called `jsonTargetKey`. Use this property if you want to achieve a serialized object with a different and/or an additional property.
+
 ## Introduction
 
 For single page application, data sources are obtained from API server. Instead of directly using api data, we 
