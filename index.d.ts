@@ -23,6 +23,7 @@ export interface ICustomConverter {
  * @interface
  * @property {ICustomConverter} customConverter, will be used for mapping the property, if specified
  * @property {boolean} excludeToJson, will exclude the property for serialization, if true
+ * @property {string} jsonTargetKey, instead of reversing the instance to it's original json you can assign a property key when serialized
  */
 export interface IDecoratorMetaData<T> {
     name?: string;
@@ -31,6 +32,7 @@ export interface IDecoratorMetaData<T> {
     };
     customConverter?: ICustomConverter;
     excludeToJson?: boolean;
+    jsonTargetKey?: string;
 }
 /**
  * JsonProperty
@@ -72,3 +74,11 @@ export declare function deserializeArray<T extends IGenericObject>(Clazz: {
  * @returns {any} an object ready to be serialized to JSON
  */
 export declare function serialize(instance: any): any;
+/**
+ * Serialize array: Creates an array of ready-for-json-serialization object from the provided model instances.
+ * Only @JsonProperty decorated properties in the model instance are processed.
+ *
+ * @param instances an array of instance of a model classes
+ * @returns {any[]} an array of object ready to be serialized to JSON
+ */
+export declare function serializeArray(instances: any[]): any[];
