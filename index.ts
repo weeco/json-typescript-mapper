@@ -199,6 +199,9 @@ export function deserialize<T extends IGenericObject>(Clazz: {new(): T}, json: I
      * init root class to contain json
      */
     let instance = new Clazz();
+    if (instance instanceof Object && Object.keys(instance).length === 0) {
+      (<Object>instance) = json;
+    }
 
     Object.keys(instance).forEach((key: string) => {
         /**

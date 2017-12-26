@@ -150,6 +150,9 @@ function deserialize(Clazz, json) {
      * init root class to contain json
      */
     var instance = new Clazz();
+    if (instance instanceof Object && Object.keys(instance).length === 0) {
+        instance = json;
+    }
     Object.keys(instance).forEach(function (key) {
         /**
          * get decoratorMetaData, structure: { name?:string, clazz?:{ new():T } }
